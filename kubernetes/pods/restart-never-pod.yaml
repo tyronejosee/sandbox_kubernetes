@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: never
+  labels:
+    app: app1
+spec:
+  containers:
+    - name: never
+      image: busybox
+      command: ["sh", "-c", "echo Example failed pod  && exit 1"]
+  restartPolicy: Never
