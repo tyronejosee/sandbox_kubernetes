@@ -8,5 +8,5 @@ spec:
   containers:
     - name: on-failure
       image: busybox
-      command: ["sh", "-c", "echo Ejemplo de pod fallado && exit 1"]
+      command: ["sh", "-c", "echo error example && exit 1"]
   restartPolicy: OnFailure
