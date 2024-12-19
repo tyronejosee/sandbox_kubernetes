@@ -1,0 +1,19 @@
+apiVersion: apps/v1 # Use apps/v1beta2 for versions prior to 1.9.0
+kind: Deployment
+metadata:
+  name: nginx-d
+spec:
+  selector: # Allows selecting a set of objects that meet the conditions
+    matchLabels:
+      app: nginx
+  replicas: 2 # Instructs the controller to run 2 pods
+  template: # Template that defines the containers
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:latest
+          ports:
+            - containerPort: 80
