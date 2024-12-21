@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: simple-statefulset
+spec:
+  serviceName: "simple-service"
+  replicas: 3
+  selector:
+    matchLabels:
+      app: simple-app
+  template:
+    metadata:
+      labels:
+        app: simple-app
+    spec:
+      containers:
+        - name: simple-container
+          image: nginx
+          ports:
+            - containerPort: 80
