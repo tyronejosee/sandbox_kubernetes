@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config-files
+  labels:
+    app: my-app
+    environment: production
+  annotations:
+    createdBy: "team-devops"
+    description: "Configuration files for the application"
+data:
+  app.properties: |
+    environment=production
+    debug=false
