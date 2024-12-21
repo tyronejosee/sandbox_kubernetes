@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-headless-service
+spec:
+  clusterIP: None  # Headless Service (without centralized IP)
+  selector:
+    app: my-app
+  ports:
+    - port: 80
+      targetPort: 8080
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: my-headless-service
+subsets:
+  - addresses:
+      - ip: 10.0.0.1
+      - ip: 10.0.0.2
+    ports:
+      - port: 8080
