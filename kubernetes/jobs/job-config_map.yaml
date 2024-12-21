@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: job-config
+data:
+  MESSAGE: "Hello from ConfigMap!"
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: job-with-configmap
+spec:
+  template:
+    spec:
+      containers:
+      - name: print-message
+        image: busybox
+        env:
+        - name: MESSAGE
+          valueFrom:
+            configMapKeyRef:
+              name: job-config # ref
+              key: MESSAGE
+        command: ["sh", "-c", "echo $MESSAGE"]
+      restartPolicy: Never

@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: cronjob-example
+spec:
+  schedule: "*/5 * * * *" # Run every 5 minutes
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: cron-task
+            image: busybox
+            command: ["sh", "-c", "echo 'Hello from CronJob!'"]
+          restartPolicy: Never
