@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: limited-replicaset
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: resource-limited-app
+  template:
+    metadata:
+      labels:
+        app: resource-limited-app
+    spec:
+      containers:
+      - name: app-container
+        image: nginx
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
