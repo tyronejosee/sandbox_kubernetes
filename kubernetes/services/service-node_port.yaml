@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: example-nodeport-service
+  namespace: default
+spec:
+  selector:
+    app: service-selector
+  ports:
+    - protocol: TCP
+      port: 80         # Puerto que expone el servicio
+      targetPort: 8080  # Puerto en el contenedor
+      nodePort: 30001   # Puerto asignado a nivel de nodo para acceso externo
+  type: NodePort       # Accesible fuera del clúster en un puerto específico
